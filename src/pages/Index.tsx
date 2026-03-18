@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Plus, BookOpen, Search } from "lucide-react";
 import { getEntries, saveEntries, createEntry, type JournalEntry } from "@/lib/journal";
 import EntryEditor from "@/components/EntryEditor";
+import EntryViewer from "@/components/EntryViewer";
 import EntryCard from "@/components/EntryCard";
 
 export default function Index() {
