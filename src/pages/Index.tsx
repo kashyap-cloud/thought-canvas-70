@@ -82,7 +82,7 @@ export default function Index() {
             </motion.h1>
           </div>
 
-          {!showEditor && (
+          {!showEditor && !showViewer && (
             <motion.button
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
