@@ -3,11 +3,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Plus, BookOpen, Search } from "lucide-react";
 import { getEntries, saveEntries, createEntry, type JournalEntry } from "@/lib/journal";
 import EntryEditor from "@/components/EntryEditor";
+import EntryViewer from "@/components/EntryViewer";
 import EntryCard from "@/components/EntryCard";
 
 export default function Index() {
   const [entries, setEntries] = useState<JournalEntry[]>(getEntries);
   const [editing, setEditing] = useState<JournalEntry | null>(null);
+  const [viewing, setViewing] = useState<JournalEntry | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -25,6 +27,7 @@ export default function Index() {
 
   const handleNew = () => {
     setEditing(null);
+    setViewing(null);
     setIsNew(true);
   };
 
@@ -42,6 +45,7 @@ export default function Index() {
       );
     }
     setEditing(null);
+    setViewing(null);
     setIsNew(false);
   };
 
@@ -50,6 +54,7 @@ export default function Index() {
   };
 
   const showEditor = isNew || editing;
+  const showViewer = viewing && !showEditor;
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,7 +82,7 @@ export default function Index() {
             </motion.h1>
           </div>
 
-          {!showEditor && (
+          {!showEditor && !showViewer && (
             <motion.button
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -100,6 +105,14 @@ export default function Index() {
               entry={editing}
               onSave={handleSave}
               onCancel={() => { setEditing(null); setIsNew(false); }}
+            />
+          ) : showViewer ? (
+            <EntryViewer
+              key="viewer"
+              entry={viewing}
+              onEdit={() => { setEditing(viewing); setViewing(null); }}
+              onDelete={() => { handleDelete(viewing.id); setViewing(null); }}
+              onClose={() => setViewing(null)}
             />
           ) : (
             <motion.div
@@ -140,7 +153,7 @@ export default function Index() {
                       key={entry.id}
                       entry={entry}
                       index={i}
-                      onEdit={(e) => { setEditing(e); setIsNew(false); }}
+                      onEdit={(e) => setViewing(e)}
                       onDelete={handleDelete}
                     />
                   ))}
