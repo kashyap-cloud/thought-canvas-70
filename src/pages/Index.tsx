@@ -45,6 +45,7 @@ export default function Index() {
       );
     }
     setEditing(null);
+    setViewing(null);
     setIsNew(false);
   };
 
