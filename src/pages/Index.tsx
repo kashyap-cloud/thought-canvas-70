@@ -153,8 +153,9 @@ export default function Index() {
                       key={entry.id}
                       entry={entry}
                       index={i}
-                      onEdit={(e) => { setEditing(e); setIsNew(false); }}
+                      onEdit={(e) => setViewing(e)}
                       onDelete={handleDelete}
+                    />
                     />
                   ))}
                 </div>
