@@ -156,7 +156,6 @@ export default function Index() {
                       onEdit={(e) => setViewing(e)}
                       onDelete={handleDelete}
                     />
-                    />
                   ))}
                 </div>
               )}
