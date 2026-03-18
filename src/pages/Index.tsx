@@ -106,6 +106,14 @@ export default function Index() {
               onSave={handleSave}
               onCancel={() => { setEditing(null); setIsNew(false); }}
             />
+          ) : showViewer ? (
+            <EntryViewer
+              key="viewer"
+              entry={viewing}
+              onEdit={() => { setEditing(viewing); setViewing(null); }}
+              onDelete={() => { handleDelete(viewing.id); setViewing(null); }}
+              onClose={() => setViewing(null)}
+            />
           ) : (
             <motion.div
               key="list"
