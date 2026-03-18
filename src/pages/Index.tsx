@@ -27,6 +27,7 @@ export default function Index() {
 
   const handleNew = () => {
     setEditing(null);
+    setViewing(null);
     setIsNew(true);
   };
 
