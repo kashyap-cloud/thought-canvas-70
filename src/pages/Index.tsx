@@ -9,6 +9,7 @@ import EntryCard from "@/components/EntryCard";
 export default function Index() {
   const [entries, setEntries] = useState<JournalEntry[]>(getEntries);
   const [editing, setEditing] = useState<JournalEntry | null>(null);
+  const [viewing, setViewing] = useState<JournalEntry | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [search, setSearch] = useState("");
 
