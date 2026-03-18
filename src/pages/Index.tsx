@@ -54,6 +54,7 @@ export default function Index() {
   };
 
   const showEditor = isNew || editing;
+  const showViewer = viewing && !showEditor;
 
   return (
     <div className="min-h-screen bg-background">
